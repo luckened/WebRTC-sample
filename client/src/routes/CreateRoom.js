@@ -24,8 +24,13 @@ const CreateRoom = (props) => {
                 </section>
 
                 <section className="buttonArea">
-                    <p>To create a room click on the button and send the link to a friend</p>
-                    <button className="button" onClick={create}>Create Room</button>
+                    <p>
+                        To create a room click on the button and send the link
+                        to a friend
+                    </p>
+                    <button className="button" onClick={create}>
+                        Create Room
+                    </button>
                 </section>
             </div>
 
