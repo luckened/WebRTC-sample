@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import CreateRoom from "./routes/CreateRoom";
 import Room from "./routes/Room";
-import Footer from './components/footer'
+import Footer from './components/footer/footer'
 import './index.css'
 
 const App = () => (

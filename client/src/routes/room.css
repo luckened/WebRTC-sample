@@ -1,0 +1,55 @@
+.room{
+    background-color: #1C2329;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 60vw 37vw;
+
+}
+
+.videos{
+    margin: 5em 5em;
+}
+
+.subTitle{
+    background-color: #CEA032;
+    color: white;
+    padding: 1em;
+    border-radius: 1em;
+    max-width: 38vw;
+}
+
+.userList{
+    color:white
+}
+
+input{
+    padding: 0.5em;
+    outline: none;
+    /* background-color: #CEA032; */
+    border-radius: 1em;
+}
+
+.insertUserButton{
+    /* margin-left:5em ; */
+    background-color: #CEA032;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: inherit;
+    display: block;
+    margin-top: 1em;
+}
+
+.buttonGetMeetingLink{
+    margin-left:5em ;
+    width: 20vw;
+    height: 10vh;
+    background-color: #CEA032;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: inherit;
+    display: block;
+}
+
+button{
+    outline: none;
+}

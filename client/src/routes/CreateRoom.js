@@ -3,7 +3,6 @@ import DisneyMeetsLogo from '../images/DisneyMeets.png';
 import DisneyMeetsMainLogo from '../images/DisneyMeetsLogo.png';
 import { v1 as uuid } from "uuid";
 import './createRoom.css'
-import Footer from "../components/footer";
 
 const CreateRoom = (props) => {
     const create = () => {

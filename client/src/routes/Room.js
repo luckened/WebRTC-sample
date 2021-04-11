@@ -1,5 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import io from "socket.io-client";
+import User from "../components/user/user";
+import './room.css'
 
 const Room = (props) => {
     const userVideo = useRef();
@@ -159,8 +161,8 @@ const Room = (props) => {
     }
 
     return (
-        <>
-            <div>
+        <div className="room">
+            <section className="videos">
                 <video
                     id="myVideo"
                     className="myVideo"
@@ -172,30 +174,41 @@ const Room = (props) => {
                     autoPlay
                     ref={partnerVideo}
                 />
-            </div>
-            <div>
-                {showNameInput && (
-                    <>
-                        <label>Name:</label>
+                <p className="subTitle">Disney Meets Streaming Web RTC</p>
+                <section className="inputName">
+                    {showNameInput && (
+                        <>
+                            <p>New user are coming, set his name:</p>
 
-                        <input
-                            type="text"
-                            value={nameInput}
-                            onChange={(ev) => setNameInput(ev.target.value)}
-                        />
-                        <button onClick={handleOkClick}>Ok</button>
-                    </>
-                )}
-            </div>
+                            <input
+                                type="text"
+                                value={nameInput}
+                                onChange={(ev) => setNameInput(ev.target.value)}
+                            />
+                            <button className="insertUserButton" onClick={handleOkClick}>Insert user</button>
+                        </>
+                    )}
+                </section>
+            </section>
             <div>
-                {usersList &&
-                    usersList.map((user) => (
-                        <li>
-                            <label>{user}</label>
-                        </li>
-                    ))}
+
+                <section className="userList">
+                    {usersList &&
+                        usersList.map((user) => (
+                            <User >
+                                {user}
+                            </User>
+                        ))}
+                </section>
             </div>
-        </>
+
+
+            <button
+                className="buttonGetMeetingLink"
+                onClick={() => { navigator.clipboard.writeText(window.location.href) }}>
+                Copy link
+            </button>
+        </div>
     );
 };
 
