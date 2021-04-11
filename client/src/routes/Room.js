@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import io from "socket.io-client";
 
 const Room = (props) => {
@@ -8,6 +8,16 @@ const Room = (props) => {
     const socketRef = useRef();
     const otherUser = useRef();
     const userStream = useRef();
+    const [usersList, setUsersList] = useState([]);
+    const [nameInput, setNameInput] = useState("");
+    const [showNameInput, setShowNameInput] = useState(false);
+    const [showGuestVideo, setShowGuestVideo] = useState(false);
+
+    const handleOkClick = () => {
+        setUsersList((users) => users.concat(nameInput));
+        setShowNameInput(false);
+        setShowGuestVideo(true);
+    };
 
     useEffect(() => {
         const myVideo = document.getElementById("myVideo");
@@ -18,6 +28,7 @@ const Room = (props) => {
             .then((stream) => {
                 userVideo.current.srcObject = stream;
                 userStream.current = stream;
+                myVideo.muted = true;
 
                 socketRef.current = io.connect("/");
                 socketRef.current.emit("join room", props.match.params.roomID);
@@ -30,6 +41,7 @@ const Room = (props) => {
                 socketRef.current.on("user joined", (userID) => {
                     otherUser.current = userID;
                     console.log("user joined", otherUser.current);
+                    setShowNameInput(true);
                 });
 
                 socketRef.current.on("offer", handleRecieveCall);
@@ -120,6 +132,8 @@ const Room = (props) => {
     }
 
     function handleAnswer(message) {
+        console.log("handleANs");
+        console.log(message);
         const desc = new RTCSessionDescription(message.sdp);
         peerRef.current.setRemoteDescription(desc).catch((e) => console.log(e));
     }
@@ -145,10 +159,43 @@ const Room = (props) => {
     }
 
     return (
-        <div>
-            <video id="myVideo" autoPlay ref={userVideo} />
-            <video autoPlay ref={partnerVideo} />
-        </div>
+        <>
+            <div>
+                <video
+                    id="myVideo"
+                    className="myVideo"
+                    autoPlay
+                    ref={userVideo}
+                />
+                <video
+                    className={showGuestVideo ? "myVideo" : "hideMyVideo"}
+                    autoPlay
+                    ref={partnerVideo}
+                />
+            </div>
+            <div>
+                {showNameInput && (
+                    <>
+                        <label>Name:</label>
+
+                        <input
+                            type="text"
+                            value={nameInput}
+                            onChange={(ev) => setNameInput(ev.target.value)}
+                        />
+                        <button onClick={handleOkClick}>Ok</button>
+                    </>
+                )}
+            </div>
+            <div>
+                {usersList &&
+                    usersList.map((user) => (
+                        <li>
+                            <label>{user}</label>
+                        </li>
+                    ))}
+            </div>
+        </>
     );
 };
 
