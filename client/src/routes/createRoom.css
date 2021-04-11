@@ -1,0 +1,55 @@
+.page{
+    display: grid;
+    grid-template-columns: 49vw 49vw;
+    background-color: #1C2329;
+    width: 100%;
+    height: 100vh;
+}
+.header{
+    margin-left: 2em;
+    margin-top: 2em;
+    max-height: 50px;
+    display: flex;
+    font-weight:700 ;
+    align-items: center;
+}
+
+.headerLogo{
+    width: 50px;
+    height: 50px;
+    margin: 0em 0 0 0em;
+}
+
+.itemGrid{
+    display: grid;
+}
+
+.titleSection{
+    padding: 0em 2em 0em 2em;
+}
+
+h1{
+    color: white;
+}
+
+p{
+    color: white;
+}
+
+.buttonArea{
+    padding: 3em;
+}
+
+.button{
+    padding: 1.5em;
+    border: 1em;
+    background-color: #CEA032;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: inherit;
+}
+
+.disneyLogo{
+    height: 95vh;
+    width: 45vw;
+}
